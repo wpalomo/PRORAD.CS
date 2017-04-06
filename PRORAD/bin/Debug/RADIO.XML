@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<PRORAD>
+	<COMMON>
+		<PATHS>
+			<PATHPROCAOT concepto="Carpeta de trabajo del SGA">D:/PROYECTOS/SGA.NET/PROCAOT.VFP</PATHPROCAOT>
+			<PATHPRORAD  concepto="Carpeta de trabajo de RF">D:/PROYECTOS/SGA.NET/PRORAD.CS</PATHPRORAD>
+	    </PATHS>
+
+	    <FICHEROS>
+			<MENU      concepto="Fichero BBDD de menús">MENUS</MENU>
+			<PROGRAMAS concepto="Fichero BBDD de pantallas">PANTALLAS</PROGRAMAS>
+			<MENSAJES  concepto="Fichero BBDD de mensajes">PRORAD</MENSAJES>
+	    </FICHEROS>
+
+	    <CONFIG>
+			<CONNDB concepto="Archivo configuración BBDD SGA">CONNDB.INI</CONNDB>
+			<MSI2   concepto="Archivo configuración SGA">MSI2.INI</MSI2>
+			<RADIO  concepto="Archivo configuración RF">RADIO.INI</RADIO>
+	    </CONFIG>
+
+	    <BBDD><COMVFP concepto="DSN Acceso a BBDD desde RF">COMVFP</COMVFP></BBDD>
+
+		<VFP>
+			<DEBUGSQL   concepto="Modo depuración">OFF</DEBUGSQL>
+			<BACKGROUND concepto="LOG background en SGA">ON</BACKGROUND>
+			<DATE       concepto="Formato fecha VFP">BRITISH</DATE>
+			<CENTURY    concepto="Agregar siglo a fechas">ON</CENTURY>
+		</VFP>
+
+		<DEFAULT>
+			<DIGCONTROL       concepto="Pedir dígito de control">S</DIGCONTROL>
+			<AGRLISTA         concepto="Agrupar listas">N</AGRLISTA>
+			<TUBIMAC          concepto="Tipo ubicación UBIMACS">B</TUBIMAC>
+			<CONTROLEANMAC    concepto="Control EAN en MAC">S</CONTROLEANMAC>
+			<INVENTARIOONLINE concepto="Inventario ON-LINE">S</INVENTARIOONLINE>
+			<CONTROLTCL       concepto="Control Tono/Calibre/Lote">A</CONTROLTCL>
+			<CONTROLCAD       concepto="Control Caducidad">A</CONTROLCAD>
+		</DEFAULT>
+			
+		<CROSS-DOCKING    concepto="Configuración Cross-Docking">
+			<MUELLESCD    concepto="Muelles de Cross-Docking">
+				<MUELLECD concepto="Muelle Cross-Docking">0001CD01001010</MUELLECD>
+			</MUELLESCD>
+
+			<OPERARIOSCD    concepto="Operarios de Cross-Docking">
+				<OPERARIOCD concepto="Operario Cross-Docking" activo="S">
+					<CODIGO>0001</CODIGO>
+					<NOMBRE>OPERARIO 1</NOMBRE>
+				</OPERARIOCD>
+
+				<OPERARIOCD concepto="Operario Cross-Docking" activo="N">
+					<CODIGO>0006</CODIGO>
+					<NOMBRE>OPERARIO 6</NOMBRE>
+				</OPERARIOCD>
+			</OPERARIOSCD>
+		</CROSS-DOCKING>
+	</COMMON>
+</PRORAD>

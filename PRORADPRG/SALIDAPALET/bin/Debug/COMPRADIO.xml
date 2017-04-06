@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>COMPRADIO</name>
+    </assembly>
+    <members>
+        <member name="T:COMPRADIO.PRORAD">
+            <summary>
+            Funciones de trabajo de los procesos de RF.
+            </summary>
+            <summary>
+            Funciones para los procesos de Entrada de Material.
+            </summary>
+            <summary>
+            FUnciones generales para los procesos de Salida de Material.
+            </summary>
+            <summary>
+            Punto de entrada en instancias de COMPRADIO desde main().
+            </summary>
+            <summary>
+            Propiedades y funciones de uso interno de la clase.
+            </summary>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.InicioConexion">
+            <summary>
+            Establecer conexión con la BBDD e inicializar la aplicación.
+            </summary>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ConectarUsuario(System.String)">
+            <summary>
+            Establecer el operario activo.
+            </summary>
+            <param name="CodigoDeUsuario"> Código del usuario que se conecta a la sesión</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ValidarTerminal(System.String)">
+            <summary>
+            Validar propiedades del terminal.
+            </summary>
+            <param name="TerminalRF"></param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ValidarMenu(System.String,System.String,System.Char,System.String)">
+            <summary>
+            Validar opción de menú.
+            </summary>
+            <param name="programa">Código de programa en MENUS</param>
+            <param name="seccionMenu">Sección a visualizar en pantalla</param>
+            <param name="opcionMenu">Opción de menú</param>
+            <param name="ficheroMenus">Archivo de menús. Def: MENUS</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.PreviousMenu(System.String,System.String,System.Char,System.String)">
+            <summary>
+            Ir al menú anterior.
+            </summary>
+            <param name="programa">Código de programa en MENUS</param>
+            <param name="seccionMenu">Sección a visualizar en pantalla</param>
+            <param name="opcionMenu">Opción de menú</param>
+            <param name="cstFichero">Archivo de menús. Def: MENUS</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.DesconectarUsuario">
+            <summary>
+            Desconectar el operario activo de la aplicación.
+            </summary>
+            <returns>Resultado (S/N)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.FinConexion">
+            <summary>
+            Finalizar la aplicación.
+            </summary>
+            
+            <returns>Resultado (S/N)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ScrGenerarNextLinea(System.String,System.String,System.String)">
+            <summary>
+            Visualizar el siguiente dato en pantalla.
+            </summary>
+            
+            <remarks> Utiliza _scrformatlinea para formatear el valor a visualizar</remarks>
+            
+            <seealso cref="M:COMPRADIO.PRORAD._scrformatlinea(System.Data.DataTableReader)"/>
+            
+            <param name="cstPrograma">Código de programa en MENUS</param>
+            <param name="cstSeccion">Sección a visualizar en pantalla</param>
+            <param name="cstFichero">Archivo de menús. Def: PANTALLAS</param>
+            
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD._inicioconexion">
+            <summary>
+            Validar la configuración inicial de RF.
+            </summary>
+            <returns>Resultado (S/N)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD._scrformatlinea(System.Data.DataTableReader)">
+            <summary>
+            Formatear propiedades de visualización en pantalla.
+            </summary>
+            <remarks> Utilizado desde ScrGenerarNextLinea</remarks>
+            <seealso cref="M:COMPRADIO.PRORAD.ScrGenerarNextLinea(System.String,System.String,System.String)"/>
+            <param name="dr">DataRow con las propiedades a visualizar</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD._xmlinicializar">
+            <summary>
+            Inicializar propiedades de configuración de la aplicación.
+            </summary>
+            
+            <remarks> Lee configuración de archivo XML</remarks>
+            
+            <returns> Resultado (true / false)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD._scrinicializar">
+            <summary>
+            Inicializar propiedades de visualización en pantalla.
+            </summary>
+            <seealso cref="M:COMPRADIO.PRORAD.ScrGenerarNextLinea(System.String,System.String,System.String)"/>
+            <seealso cref="M:COMPRADIO.PRORAD._scrformatlinea(System.Data.DataTableReader)"/>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.FlgAlbP">
+            <summary></summary>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ConsultaAlbaranes(System.String,System.String)">
+            <summary>
+            Entradas - Consulta de albaranes.
+            </summary>
+            <param name="cstSkipR">
+            Operación a realizar:
+                V - Validar albarán y cargar líneas.
+                M - Mostrar el siguiente albarán.
+                S - Seleccionar albarán.
+                Z - Cerrar proceso de consulta de albaranes.
+            </param>
+            <param name="cstAlbaran">Albarán inicial</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.ConsultaAlbaran(System.String,System.String)">
+            <summary>
+            Entradas - Consulta de un albarán.
+            </summary>
+            <param name="cstSkipR">
+            Operación a realizar:
+                V - Validar albarán y cargar líneas.
+                M - Mostrar la siguiente línea del albarán.
+                Z - Cerrar proceso de consulta de detalle del albarán.
+            </param>
+            <param name="cstAlbaran">Albarán a consultar</param>
+            <returns></returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecInicializar">
+            <summary>
+            Recuento: Inicializar.
+            </summary>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecValidarAlbaran(System.String)">
+            <summary>
+            Recuento: Validar el albarán.
+            </summary>
+            
+            <param name="strAlbaran"> Albarán a validar</param>
+            
+            <returns> Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecValidarEAN(System.String)">
+            <summary>
+            Recuento: Validar el EAN del artículo.
+            </summary>
+            
+            <param name="strEAN"> Código EAN del artículo.</param>
+            
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecValidarCnt(System.String)">
+            <summary>
+            Recuento: Validar la cantidad recontada.
+            </summary>
+            
+            <param name="strCantidad">Cantidad recontada a validar.</param>
+            
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecActualizar">
+            <summary>
+            Recuento: Actualizar.
+            </summary>
+            
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.RecFinalizar">
+            <summary>
+            Recuento: Finalizar.
+            </summary>
+            
+            <returns>Resultado (S/N)</returns>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.FlgAlbN">
+            <summary></summary>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.Foo">
+            <summary>
+            Salidas - Foo.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalInicializar">
+            <summary>
+            Salida Palet: Inicializar.
+            </summary>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalPeticionUbicacion">
+            <summary>
+            Salida Palet: Cargar siguiente palet a preparar.
+            </summary>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalValidarOrigen(System.String,System.String)">
+            <summary>
+            Salida Palet: Validar la ubicación origen.
+            </summary>
+            <param name="codigoUbicacion">Código de ubicación</param>
+            <param name="dcUbicacion">Dígito de control de la ubicación</param>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalValidarPalet(System.String)">
+            <summary>
+            Salida Palet: Validar el palet / SSCC.
+            </summary>
+            <param name="numeroPalet">número de palet / SSCC a validar</param>
+            <returns>Resultado</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalActualizar">
+            <summary>
+            Salida Palet: Actualizar.
+            </summary>
+            <returns>Resultado</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SalFinalizar">
+            <summary>
+            Salida Palet: Finalizar.
+            </summary>
+            <returns>Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.Foo2">
+            <summary></summary>
+        </member>
+        <member name="F:COMPRADIO.PRORAD.Iptr">
+            <summary> Acceso a funciones de COMPRADIO.VFP</summary>
+            
+        </member>
+        <member name="F:COMPRADIO.PRORAD.__TFRf">
+            <summary>Acceso a BBDD, uso interno.</summary>
+            
+        </member>
+        <member name="F:COMPRADIO.PRORAD.__TFXmlRF">
+            <summary> Acceso a fichero XML de configuración (RF).</summary>
+            
+        </member>
+        <member name="F:COMPRADIO.PRORAD.__TFXmlSGA">
+            <summary> Acceso a fichero XML de configuración (SGA).</summary>
+            
+        </member>
+        <member name="P:COMPRADIO.PRORAD.UsrErrorC">
+            <summary> Código general de error. </summary>
+            
+        </member>
+        <member name="P:COMPRADIO.PRORAD.UsrError">
+            <summary> Mensaje general de error. </summary>
+            
+        </member>
+        <member name="P:COMPRADIO.PRORAD.UsrErrorE">
+            <summary> Mensaje extendido de error. </summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsCanRec">
+            <summary> Cantidad recontada.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsCodEAN">
+            <summary> Código EAN.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsDesArt">
+            <summary> Descripción artículo.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsEstAlb">
+            <summary> Estado albarán.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsFecEnt">
+            <summary> Fecha de entrada de albarán.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsNumAlb">
+            <summary> Número de albarán.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CnsOrden">
+            <summary> Orden.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MensajesRF">
+            <summary> Fichero de mensajes para RF en la BBDD</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MensajesSGA">
+            <summary> Fichero de mensajes para sga en la BBDD</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.ScrValor">
+            <summary> Valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.ScrMascara">
+            <summary>Máscara de formateo del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.ScrFormato">
+            <summary>Cadena de formateo del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.ScrTipo">
+            <summary>Tipo de campo del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.XCoord">
+            <summary>Coordenada X del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.YCoord">
+            <summary>Coordenada Y del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CurLinea">
+            <summary>Línea actual del valor a visualizar en pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.Monitor">
+            <summary>Monitor</summary>
+            
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipoMonitor">
+            <summary>Tipo de monitor</summary>
+            
+        </member>
+        <member name="P:COMPRADIO.PRORAD.AnchoPantalla">
+            <summary>Ancho caracteres pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.AltoPantalla">
+            <summary>Alto caracteres pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.Idioma">
+            <summary>Idioma de los mensajes.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.LineaInputs">
+            <summary>Línea de inputs por pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.ColumnaInputs">
+            <summary>Columna de inputs por pantalla.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuFile">
+            <summary> Fichero de menús en la BBDD</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuPantallas">
+            <summary> Fichero de configuración de pantallas en la BBDD</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuSeccion">
+            <summary>Sección menú.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuNamespace">
+            <summary>NameSpace menú.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuClase">
+            <summary>Clase menú.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuEnsamblado">
+            <summary>Ensamblado menú.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.MnuEntryPoint">
+            <summary>Punto de entrada menú.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.DBENtorno">
+            <summary> Entorno BBDD por defecto </summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.DBVersion">
+            <summary> Versión BBDD por defecto </summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.DBProveedor">
+            <summary> Proveedor BBDD por defecto </summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CodProD">
+            <summary> Código de propietario por defecto</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.SitStkE">
+            <summary>SSTK stock disponible.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipMovE">
+            <summary>TMOV entrada de material.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipMovX">
+            <summary>TMOV expedición.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipMovO">
+            <summary>TMOV preparación (Salida origen).</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipMovD">
+            <summary>TMOV preparación (Entrada destino).</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.TipMovR">
+            <summary>TMOV preparación (Consolidación).</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CodArt">
+            <summary>Código de artículo.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CodOpe">
+            <summary>Código de operario.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CanRec">
+            <summary>Cantidad recontada.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CanRecRF">
+            <summary>Cantidad recontada RF.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.CodPro">
+            <summary> Código de propietario.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.DesArt">
+            <summary> Descripción del artículo.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.NomOpe">
+            <summary> Nombre de operario.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.GrpOpe">
+            <summary> Grupo del operario.</summary>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.NumAlb">
+            <summary> Número de Albarán.</summary>
+            
+            <remarks> Asigna valores a Compradio.Vfp, por compatibilidad</remarks>
+        </member>
+        <member name="P:COMPRADIO.PRORAD.NumPal">
+            <summary> Número de palet.</summary>
+            
+            <remarks> Asigna valores a Compradio.Vfp, por compatibilidad</remarks>
+        </member>
+        <member name="M:COMPRADIO.PRORAD._validarEANArt(System.String,System.String)">
+            <summary>
+            Validar el código EAN de un artículo. 
+            </summary>
+            
+            <remarks> Recibe, opcionalmente, el propietario, para validar por código interno.</remarks>
+            
+            <param name="codigoEAN"> Código EAN del artículo a validar</param>
+            <param name="CodigoPropietario"> Código de propietario</param>
+            
+            <returns> Resultado (S/N/C)</returns>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.SetMessage(System.Object[])">
+            <summary>
+            Asignar mensajes de error. Forma general.
+            </summary>
+            
+            <param name="parametros">
+            Array de parámetros del mensaje:
+                - Codigo del mensaje.
+                - Mensaje por defecto.
+                - Fichero de mensajes. Def: PRORAD.
+            </param>
+            
+            <remarks>
+            Ejemplo de paso de parámetros recibidos en forma de array.
+            </remarks>
+            
+            <seealso cref="M:COMPRADIO.PRORAD.GetMessage(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:COMPRADIO.PRORAD.GetMessage(System.String,System.String,System.String)">
+            <summary>
+            Obtener los textos de mensajes de error. Forma general.
+            </summary>
+            
+            <param name="messageCode"> Código de mensaje</param>
+            <param name="defaultMessage"> Mensaje por defecto</param>
+            <param name="messageFile"> Fichero de mensajes. Def: MensajesRF</param>
+            
+            <remarks>
+            Ejemplo de paso de parámetros de entrada de forma standard.
+            </remarks>
+            
+            <seealso cref="M:COMPRADIO.PRORAD.SetMessage(System.Object[])"/>
+            
+            <returns>Texto del mensaje</returns>
+        </member>
+        <member name="T:COMPRADIO.Properties.Resources">
+            <summary>
+              Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:COMPRADIO.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:COMPRADIO.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
+            </summary>
+        </member>
+        <member name="P:COMPRADIO.Properties.Resources.ResourceBase">
+            <summary>
+              Busca una cadena traducida similar a R2K9 Enterprises.
+            </summary>
+        </member>
+    </members>
+</doc>

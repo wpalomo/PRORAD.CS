@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="COMPRADIO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DSN=SGANET;Description=SGA (.NET);UID=sa;PWD=angeles-sofia;APP=Microsoft® Visual Studio® 2015;WSID=ABBE-ASUS;DATABASE=SGANET;QueryLog_On=Yes;StatsLog_On=Yes;</Value>
+    </Setting>
+    <Setting Name="RfXmlPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\PROYECTOS\SGA.NET\EXE\RF\RADIO.XML</Value>
+    </Setting>
+    <Setting Name="SgaXmlFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\PROYECTOS\SGA.NET\EXE\SGA\SGA.XML</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

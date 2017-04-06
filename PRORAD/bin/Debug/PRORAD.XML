@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PRORAD</name>
+    </assembly>
+    <members>
+        <member name="T:PRORAD.RF">
+            <summary>
+            Módulo principal de procesos de Radio Frecuencia.
+            </summary>
+        </member>
+        <member name="M:PRORAD.RF.menu(System.Object[])">
+            <summary>
+            Menú general de opciones - Formato fijo.
+            </summary>
+            <param name="parametros">Array con los parámetros</param>
+            <seealso cref="M:PRORAD.RF.DisplayPantallaPro(System.Object[])"/>
+            <seealso cref="M:PRORAD.RF._tmain"/>
+        </member>
+        <member name="M:PRORAD.RF.DisplayPantallaPro(System.Object[])">
+            <summary>
+            Menú general de opciones - Formato configurable.
+            </summary>
+            
+            <param name="parametros"> Array de parámetros</param>
+            
+            <remarks>
+                parametros[0] - Objeto COMPRADIO.
+            </remarks>
+            
+            <seealso cref="M:PRORAD.RF.menu(System.Object[])"/>
+            <seealso cref="M:PRORAD.RF._tmain"/>
+            
+            <returns></returns>
+        </member>
+        <member name="M:PRORAD.RF._tmain">
+            <summary>
+            Punto de entrada al programa de RF.
+            </summary>
+            <seealso cref="M:PRORAD.RF.menu(System.Object[])"/>
+            <seealso cref="M:PRORAD.RF.DisplayPantallaPro(System.Object[])"/>
+            <returns></returns>
+        </member>
+        <member name="T:PRORAD.Prorad">
+            <summary>
+            Clase base de gestión de RF.
+            </summary>
+        </member>
+        <member name="M:PRORAD.Prorad.Main(System.String[])">
+            <summary>
+            Entrada al programa.
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>
